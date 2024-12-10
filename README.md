@@ -77,3 +77,82 @@ The endpoint requires a JSON object with the following structure:
 ### Internal Server Error
 * Status Code: 500 Internal Server Error
 * Description: Indicates an error occurred while processing the request. The server logs should provide further details.
+
+# Documentation for /user/login Endpoint
+This section explains the /user/login endpoint, including its purpose, required request body, and potential responses.
+
+## Endpoint: /user/login
+### Description
+The /user/login endpoint authenticates a user by verifying their email and password. Upon successful authentication, it returns a JWT (JSON Web Token) and the user's details.
+
+## Method
+    POST
+
+## Request Body
+The endpoint requires a JSON object with the following structure:
+
+### json
+    {
+    "email": "user@example.com",
+    "password": "securepassword123"
+    }
+## Field Descriptions
+1. email (string, required):
+* Must be a valid email format.
+2. password (string, required):
+* Minimum 6 characters.
+## Response
+### Success
+* Status Code: 200 OK
+* Description: User authenticated successfully. Returns a JSON object containing a token and the user's details.
+### Example Response:
+
+### json
+    {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+    "user": {
+        "_id": "63f6d9e5f79dce001f0f9e7c",
+        "fullname": {
+        "firstname": "John",
+        "lastname": "Doe"
+        },
+        "email": "user@example.com"
+    }
+    }
+## Validation Errors
+* Status Code: 400 Bad Request
+* Description: Validation errors for the provided input.
+### Example Response:
+
+### json
+    {
+    "errors": [
+        {
+        "msg": "Invalid Email",
+        "param": "email",
+        "location": "body"
+        },
+        {
+        "msg": "Password must be atleast 6 characters long",
+        "param": "password",
+        "location": "body"
+        }
+    ]
+    }
+### Authentication Errors
+* Status Code: 401 Unauthorized
+* Description: Email or password is incorrect.
+### Example Response:
+
+### json
+    {
+    "message": "Invalid email or password"
+    }
+## Internal Server Error
+* Status Code: 500 Internal Server Error
+* Description: Indicates an unexpected error occurred while processing the request.
+### Example Response:
+### json
+    {
+    "message": "An unexpected error occurred"
+    }
