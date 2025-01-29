@@ -1,3 +1,4 @@
+// creating user by connecting to db...
 const userModel = require("../models/user.model");
 
 module.exports.createUser = async ({
