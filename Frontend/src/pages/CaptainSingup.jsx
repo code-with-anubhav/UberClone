@@ -51,7 +51,7 @@ const CaptainSingup = () => {
     setVehiclePlate("");
     setVehicleCapacity("");
     setVehicleType("");
-  };
+  }
 
   return (
     <div className="py-2 px-3 h-screen flex flex-col justify-between">
@@ -179,7 +179,7 @@ const CaptainSingup = () => {
         </p>
       </div>
       <div>
-        <p className="text-[10px] leading-tight">
+        <p className="text-[10px] mt-6 leading-tight">
           This site is protected by reCAPTCHA and the{" "}
           <span className="underline text-blue-800">Google Privacy Policy</span>{" "}
           and{" "}
